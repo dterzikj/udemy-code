@@ -9,27 +9,68 @@
 		<div class="container clearfix">
 
 			<div class="col_half">
-				Copyrights &copy; 2017 All Rights Reserved by Jasko Koyn Inc.<br>
-				<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+				<?php echo get_theme_mod('du_footer_copyright_text'); ?><br>
+				<div class="copyright-links">
+                    <?php
+
+                    if(get_theme_mod('du_footer_tos_page')){
+                        ?><a href="<?php the_permalink(get_theme_mod('du_footer_tos_page')); ?>">Terms of Use</a><?php
+                    }
+                    if(get_theme_mod('du_footer_tos_page') and get_theme_mod('du_footer_privacy_page')){
+                        echo '/';
+                    }
+                    if(get_theme_mod('du_footer_privacy_page')){
+	                    ?><a href="<?php the_permalink(get_theme_mod('du_footer_privacy_page')); ?>">Privacy Policy</a><?php
+                    }
+
+                    ?>
+                </div>
 			</div>
 
 			<div class="col_half col_last tright">
 				<div class="fright clearfix">
-					<a href="#" class="social-icon si-small si-borderless si-facebook">
-						<i class="icon-facebook"></i>
-						<i class="icon-facebook"></i>
-					</a>
 
-					<a href="#" class="social-icon si-small si-borderless si-twitter">
-						<i class="icon-twitter"></i>
-						<i class="icon-twitter"></i>
-					</a>
+                    <?php
+
+                    if(get_theme_mod('du_facebook_handle')){
+                        ?>
+                        <a href="https://facebook.com/<?php echo get_theme_mod('du_facebook_handle'); ?>" class="social-icon si-small si-borderless si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <?php
+                    }
+
+                    if(get_theme_mod('du_twitter_handle')){
+	                    ?>
+                        <a href="https://twitter.com/<?php echo get_theme_mod('du_twitter_handle'); ?>" class="social-icon si-small si-borderless si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+	                    <?php
+                    }
+
+                    ?>
 
 				</div>
 
 				<div class="clear"></div>
 
-				<i class="icon-envelope2"></i> info@email.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369
+                <?php
+
+                if(get_theme_mod('du_email_address')){
+                    ?><i class="icon-envelope2"></i> <?php echo get_theme_mod('du_email_address'); ?>  <?php
+                }
+
+                if(get_theme_mod('du_email_address') and get_theme_mod('du_phone_number')){
+	                ?><span class="middot">&middot;</span><?php
+                }
+
+                if(get_theme_mod('du_phone_number')){
+	                ?><i class="icon-headphones"></i><?php echo get_theme_mod('du_phone_number') ?><?php
+                }
+
+                ?>
 			</div>
 
 		</div>
