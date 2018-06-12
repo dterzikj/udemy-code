@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html <?php language_attributes(); ?>>
 <head>
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="<?php bloginfo('charset'); ?>" >
 	<link rel="icon" type="image/png" href="images/favicon.png">
 	<!-- Stylesheets
 	============================================= -->
