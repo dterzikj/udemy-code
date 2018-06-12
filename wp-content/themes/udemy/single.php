@@ -132,7 +132,7 @@
 									$rp_query = new WP_Query(array(
 										'posts_per_page' => 2,
 										'post__not_in' => array($post->ID),
-										'cat' => $categories[0]->term_id
+										'cat' => empty($categories) ? '' : $categories[0]->term_id
 									));
 
 									if($rp_query->have_posts()){
