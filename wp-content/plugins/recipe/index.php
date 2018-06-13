@@ -20,6 +20,8 @@ if(!function_exists('add_action')){
 
 // region SETUP
 
+$vars = array();
+
 define('RECIPE_PLUGIN_URL', __FILE__);
 define('RECIPE_META_KEY', 'recipe_data');
 define('DAILY_RECIPE_TRAINSIENT_KEY', 'r_daily_recipe');
@@ -43,6 +45,7 @@ include ('includes/shortcodes/creator.php');
 include ('process/submit-user-recipe.php');
 include ('includes/shortcodes/recipe-auth.php');
 include ('process/create-account.php');
+include ('process/login.php');
 
 // endregion
 
@@ -62,6 +65,8 @@ add_action('r_daily_recipe_hook', 'r_daily_recipe_cron');
 add_action('wp_ajax_r_submit_user_recipe', 'r_submit_user_recipe');
 add_action('wp_ajax_nopriv_r_submit_user_recipe', 'r_submit_user_recipe');
 add_action('wp_ajax_nopriv_recipe_create_account', 'recipe_create_account');
+add_action('wp_ajax_nopriv_recipe_user_login', 'recipe_user_login');
+
 
 // endregion
 

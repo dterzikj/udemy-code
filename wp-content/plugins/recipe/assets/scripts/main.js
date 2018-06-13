@@ -69,4 +69,28 @@ jQuery(function($){
             }
         });
     });
+
+    $('#login-form').on('submit', function (e) {
+        e.preventDefault();
+
+        $('#login-status').html('<div class="alert alert-info">Logging in...</div>');
+        $(this).hide();
+
+        let form = {
+            action: 'recipe_user_login',
+            username: $('#login-form-username').val(),
+            pass: $('#login-form-password').val(),
+            _wpnonce: $('#_wpnonce').val()
+        };
+
+        $.post(recipe_obj.ajax_url, form).always(function (response) {
+            if(response.status === 2){
+                $('#login-form').html('<div class="alert alert-success">Logged in!</div>');
+                location.href = recipe_obj.home_url;
+            } else {
+                $('#login-status').html('<div class="alert alert-danger">Invalid password/username. Try again!</div>');
+                $('#login-form').show();
+            }
+        });
+    });
 });

@@ -22,7 +22,6 @@ add_action('after_setup_theme', 'du_setup_theme');
 add_action('widgets_init', 'du_widgets');
 add_action('customize_register', 'du_customize_register');
 add_action('customize_preview_init', 'du_customize_preview_init');
-
 // endregion
 
 // region SHORTCODES

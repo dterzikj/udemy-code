@@ -28,7 +28,7 @@ NONCE_FIELD_PH
 
 </div>
 
-<div class="col_two_third col_last nobottommargin">
+<div class="col_two_third col_last nobottommargin" REGISTER_FORM_PH>
 
 
 	<h3>Don't have an Account? Register Now.</h3>
