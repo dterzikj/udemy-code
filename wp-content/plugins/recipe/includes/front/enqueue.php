@@ -1,5 +1,14 @@
 <?php
 
+/***
+ * Enqueues scripts and styles for the rateit framework.
+ *
+ * @see wp_register_style()
+ * @see wp_register_script()
+ * @see wp_enqueue_style()
+ * @see wp_enqueue_script()
+ * @see wp_localize_script()
+ */
 function r_enqueue_scripts(){
 
 	// region REGISTERING AND ENQUEUING STYLES

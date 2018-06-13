@@ -1,5 +1,15 @@
 <?php
 
+/***
+ * Gathers the data from the recipe metabox and updates the post meta.
+ *
+ * @since 1.0.0
+ * @see update_post_meta()
+ *
+ * @param $post_id the ID of the post
+ * @param $post an object of the post
+ * @param $update check if the post is being updated or just looked at
+ */
 function r_save_post_admin($post_id, $post, $update){
 
 	if(!$update){

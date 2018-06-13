@@ -1,10 +1,22 @@
 <?php
 
+/***
+ * Function which triggers upon plugin activation
+ *
+ * @since 1.0.0
+ * @see register_activation_hook()
+ */
 function r_activate_plugin(){
+	/***
+	 * Check the version of WordPress. WordPress version of 4.5 or higher is needed for this plugin.
+	 */
 	if(version_compare(get_bloginfo('version'), '4.5', '<')){
 		wp_die(__('You must update WordPress to use this plugin', 'recipe'));
 	}
 
+	/***
+	 * Create a database for the plugin
+	 */
 	global $wpdb;
 
 	$createSQL = "
@@ -18,6 +30,12 @@ function r_activate_plugin(){
 		ENGINE=InnoDB " . $wpdb->get_charset_collate() . " AUTO_INCREMENT=1;
 	";
 
+	/**
+	 * Needed for executing dbDelta().
+	 *
+	 * @since 1.0.0
+	 * @see dbDelta()
+	 */
 	require_once (ABSPATH . '/wp-admin/includes/upgrade.php');
 	dbDelta($createSQL);
 }

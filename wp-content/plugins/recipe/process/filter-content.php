@@ -1,5 +1,14 @@
 <?php
 
+/***
+ * This function is called when 'the_content' filter hook is called. It filters the metadata for the current recipe.
+ *
+ * @since  1.0.0
+ *
+ * @param $content the content of the page
+ *
+ * @return string the html of the metadata concatenated with the content of the page
+ */
 function r_filter_recipe_content($content){
 
 	if(!is_singular('recipe')){

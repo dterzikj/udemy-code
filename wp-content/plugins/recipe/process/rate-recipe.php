@@ -1,5 +1,12 @@
 <?php
 
+/***
+ * Function which is triggered when action hook 'wp_ajax_r_rate_recipe' is called. Updates the rating
+ * via AJAX requests.
+ *
+ * @since 1.0.0
+ * @see update_post_meta()
+ */
 function r_rate_recipe(){
 
 	global $wpdb;

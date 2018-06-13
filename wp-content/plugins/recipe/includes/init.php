@@ -1,5 +1,10 @@
 <?php
 
+/***
+ * Function which create the recipe UI
+ *
+ * @since 1.0.0
+ */
 function recipe_init(){
 	$labels = array(
 		'name'               => __( 'Recipes', 'recipe' ),

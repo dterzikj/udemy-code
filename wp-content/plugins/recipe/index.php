@@ -9,6 +9,11 @@
  * Text Domain: recipe
  * */
 
+/***
+ * Check if the plugin is used from a website or by itself. Do not let usage by itself.
+ *
+ * @since 1.0.0
+ */
 if(!function_exists('add_action')){
 	die('Hi there! I am just a plugin, not much I can do when called directly.');
 }
