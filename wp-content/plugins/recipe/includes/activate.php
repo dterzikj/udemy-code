@@ -50,4 +50,23 @@ function r_activate_plugin(){
 	 * @link https://codex.wordpress.org/Transients_API
 	 */
 	wp_schedule_event(time(), 'daily', 'r_daily_recipe_hook');
+
+	$recipe_opts = get_option('r_opts');
+
+	if(!$recipe_opts){
+		add_option('r_opts', array(
+			'rating_login_required' => 1,
+			'submission_login_required' => 1
+		));
+	}
+
+	add_role(
+		'recipe_author',
+		__('Recipe Author', 'recipe'),
+		array(
+			'read' => true,
+			'upload_files' => true,
+			'edit_posts' => true
+		)
+	);
 }

@@ -26,6 +26,9 @@ define('DAILY_RECIPE_TRAINSIENT_KEY', 'r_daily_recipe');
 define('NONCE_AUTH_ACTION', 'recipe_auth');
 define('DISPLAY_MESSAGE_KEY', 'front_end_message');
 define('RECIPE_RATING_DASHBOARD_WIDGET_ID', 'r_latest_recipe_rating_widget');
+define('RECIPE_OPTIONS_SLUG', 'r_plugin_opts');
+define('RECIPE_OPTIONS_CAPABILITY', 'edit_theme_options');
+define('ORIGIN_META_KEY', 'more_info_url');
 
 // endregion
 
@@ -48,6 +51,10 @@ include ('includes/shortcodes/recipe-auth.php');
 include ('process/create-account.php');
 include ('process/login.php');
 include ('includes/admin/dashboard-widgets.php');
+include ('includes/admin/menus.php');
+include ('includes/admin/options-page.php');
+include ('process/save-options.php');
+include ('includes/admin/origin-fields.php');
 
 // endregion
 
@@ -70,6 +77,12 @@ add_action('wp_ajax_nopriv_recipe_create_account', 'recipe_create_account');
 add_action('wp_ajax_nopriv_recipe_user_login', 'recipe_user_login');
 add_filter ('the_content' , 'output_notices', 20);
 add_action('wp_dashboard_setup', 'r_add_dashboard_widgets');
+add_action('admin_menu', 'r_admin_menus');
+add_action('admin_post_r_save_options', 'r_save_options');
+add_action('origin_add_form_fields', 'r_origin_add_form_fields');
+add_action('create_origin', 'r_save_origin');
+add_action('edited_origin', 'r_save_origin');
+add_action('origin_edit_form_fields', 'r_origin_edit_form_fields');
 
 
 // endregion

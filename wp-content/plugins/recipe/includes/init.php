@@ -41,4 +41,13 @@ function recipe_init(){
 	);
 
 	register_post_type( 'recipe', $args );
+
+	register_taxonomy(
+		'origin',
+		'recipe',
+		array(
+			'label' => __('Origin', 'recipe'),
+			'rewrite' => array('slug' => 'origin')
+		)
+	);
 }

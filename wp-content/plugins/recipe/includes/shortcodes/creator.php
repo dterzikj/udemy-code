@@ -10,6 +10,12 @@
  */
 function r_recipe_creator_shortcode(){
 
+	$recipe_opts = get_option('r_opts');
+
+	if(!is_user_logged_in() and $recipe_opts['submission_login_required'] == 2){
+		return '<h3>You must be logged in to submit a recipe.</h3>';
+	}
+
 	$creator_template = wp_remote_get(plugins_url('/includes/shortcodes/creator-template.php', RECIPE_PLUGIN_URL));
 	$creatorHTML = wp_remote_retrieve_body($creator_template);
 

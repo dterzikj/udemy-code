@@ -51,6 +51,7 @@ function r_enqueue_scripts(){
 		'about_us_url' => get_permalink(50)
 	));
 
+	wp_enqueue_media();
 	wp_enqueue_script('r_rateit');
 	wp_enqueue_script('r_main');
 

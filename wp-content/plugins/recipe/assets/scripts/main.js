@@ -13,6 +13,25 @@ jQuery(function($){
         });
     });
 
+    let featured_frame = wp.media({
+        title: 'Select or Upload Media',
+        button: {
+            text: 'Use this media'
+        },
+        multiple: false
+    });
+
+    $('#recipe-img-upload-btn').on('click', function (e) {
+        e.preventDefault();
+        featured_frame.open();
+    });
+
+    featured_frame.on('select', function () {
+        let attachment = featured_frame.state().get('selection').first().toJSON();
+        $('#recipe-img-preview').attr('src', attachment.url);
+        $('#r_inputImgID').val(attachment.id);
+    });
+
     $("#recipe-form").on( "submit", function(e){
         e.preventDefault();
 
@@ -27,7 +46,8 @@ jQuery(function($){
             time:                   $("#r_inputTime").val(),
             utensils:               $("#r_inputUtensils").val(),
             level:                  $("#r_inputLevel").val(),
-            meal_type:              $("#r_inputMealType").val()
+            meal_type:              $("#r_inputMealType").val(),
+            attachment_id:          $("#r_inputImgID").val()
         };
 
         $.post( recipe_obj.ajax_url, form ).always(function(data){
@@ -62,7 +82,7 @@ jQuery(function($){
         $.post(recipe_obj.ajax_url, form).always(function (response) {
             if(response.status === 2){
                 $('#register-status').html('<div class="alert alert-success">Account created successfully!</div>');
-                location.href = recipe_obj.home_url;
+                location.href = recipe_obj.about_us_url;
             } else {
                 $('#register-status').html('<div class="alert alert-danger">Unsuccessful registration. Please fill out all the fields</div>');
                 $('#register-form').show();
