@@ -16,9 +16,11 @@ function r_rate_recipe(){
 	$rating = round($_POST['rating'], 1);
 	$user_IP = $_SERVER['REMOTE_ADDR'];
 
-	$rating_count = $wpdb->get_var(
-		"SELECT COUNT(*) FROM `". $wpdb->prefix ."recipe_ratings` WHERE `recipe_id`='". $post_id ."' AND `user_ip`='". $user_IP ."';"
-	);
+	$rating_count = $wpdb->get_var($wpdb->prepare(
+		"SELECT COUNT(*) FROM `". $wpdb->prefix ."recipe_ratings` 
+		WHERE `recipe_id`=%d AND `user_ip`=%s;",
+		$post_id, $user_IP
+	));
 
 	if($rating_count > 0){
 		wp_send_json($output);
@@ -37,9 +39,10 @@ function r_rate_recipe(){
 	$recipe_data = get_post_meta($post_id, RECIPE_META_KEY, true);
 	$recipe_data['rating_count']++;
 	$recipe_data['rating'] = round(
-		$wpdb->get_var(
-			"SELECT AVG(`rating`) FROM `". $wpdb->prefix ."recipe_ratings` WHERE `recipe_id`='". $post_id ."';"
-		),
+		$wpdb->get_var($wpdb->prepare(
+			"SELECT AVG(`rating`) FROM `". $wpdb->prefix ."recipe_ratings` WHERE `recipe_id`=%d;",
+			$post_id
+		)),
 		1
 	);
 	update_post_meta($post_id, RECIPE_META_KEY, $recipe_data);

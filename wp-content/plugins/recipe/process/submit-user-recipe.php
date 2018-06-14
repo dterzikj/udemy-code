@@ -1,5 +1,12 @@
 <?php
 
+/***
+ * Submit user recipe
+ *
+ * @since 1.0.0
+ *
+ * @see wp_kses_post()
+ */
 function r_submit_user_recipe(){
 
 	$output = array('status' => 1);

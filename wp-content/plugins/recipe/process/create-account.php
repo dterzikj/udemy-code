@@ -1,5 +1,12 @@
 <?php
 
+/***
+ * Creates a new user
+ *
+ * @since 1.0.0
+ *
+ * @see wp_insert_user()
+ */
 function recipe_create_account(){
 
 	$output = array('status' => 1);
@@ -38,6 +45,16 @@ function recipe_create_account(){
 		wp_send_json($output);
 	}
 
+	/***
+	 * Authenticate user for the first time
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see get_user_by()
+	 * @see wp_set_current_user()
+	 * @see wp_set_auth_cookie()
+	 * @see wp_login()
+	 */
 	$user = get_user_by('id', $user_id);
 	wp_set_current_user($user_id, $user->user_login);
 	wp_set_auth_cookie($user_id, false);

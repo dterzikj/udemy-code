@@ -39,9 +39,16 @@ function r_enqueue_scripts(){
 		true
 	);
 
+	/***
+	 * Creating AJAX URLs for usage in main.js
+	 *
+	 * @since 1.0.0
+	 * @see main.js
+	 */
 	wp_localize_script('r_main', 'recipe_obj', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
-		'home_url' => home_url('/')
+		'home_url' => home_url('/'),
+		'about_us_url' => get_permalink(50)
 	));
 
 	wp_enqueue_script('r_rateit');

@@ -18,7 +18,8 @@ function r_filter_recipe_content($content){
 	}
 
 	global $post, $wpdb;
-	$recipe_html = file_get_contents('recipe-template.php', true);
+	$recipe_template = wp_remote_get(plugins_url('/process/recipe-template.php', RECIPE_PLUGIN_URL));
+	$recipe_html = wp_remote_retrieve_body($recipe_template);
 	$recipe_data = get_post_meta($post->ID, RECIPE_META_KEY, true);
 
 	$recipe_html = str_replace('INGREDIENTS_PH', $recipe_data['ingredients'], $recipe_html);
@@ -38,9 +39,12 @@ function r_filter_recipe_content($content){
 
 	$user_IP = $_SERVER['REMOTE_ADDR'];
 
-	$rating_count = $wpdb->get_var(
-		"SELECT COUNT(*) FROM `". $wpdb->prefix ."recipe_ratings` WHERE `recipe_id`='". $post->ID ."' AND `user_ip`='". $user_IP ."';"
-	);
+	$rating_count = $wpdb->get_var($wpdb->prepare(
+		"SELECT COUNT(*) FROM `". $wpdb->prefix ."recipe_ratings` 
+		WHERE `recipe_id`=%d AND `user_ip`=%s;",
+		$post->ID,
+		$user_IP
+	));
 
 	if($rating_count > 0){
 		$recipe_html = str_replace('READONLY_PLACEHOLDER', 'data-rateit-readonly="true"', $recipe_html);

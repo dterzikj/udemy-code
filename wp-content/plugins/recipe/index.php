@@ -20,12 +20,13 @@ if(!function_exists('add_action')){
 
 // region SETUP
 
-$vars = array();
-
 define('RECIPE_PLUGIN_URL', __FILE__);
 define('RECIPE_META_KEY', 'recipe_data');
 define('DAILY_RECIPE_TRAINSIENT_KEY', 'r_daily_recipe');
 define('NONCE_AUTH_ACTION', 'recipe_auth');
+define('DISPLAY_MESSAGE_KEY', 'front_end_message');
+define('RECIPE_RATING_DASHBOARD_WIDGET_ID', 'r_latest_recipe_rating_widget');
+
 // endregion
 
 // region INCLUDES
@@ -46,6 +47,7 @@ include ('process/submit-user-recipe.php');
 include ('includes/shortcodes/recipe-auth.php');
 include ('process/create-account.php');
 include ('process/login.php');
+include ('includes/admin/dashboard-widgets.php');
 
 // endregion
 
@@ -66,6 +68,8 @@ add_action('wp_ajax_r_submit_user_recipe', 'r_submit_user_recipe');
 add_action('wp_ajax_nopriv_r_submit_user_recipe', 'r_submit_user_recipe');
 add_action('wp_ajax_nopriv_recipe_create_account', 'recipe_create_account');
 add_action('wp_ajax_nopriv_recipe_user_login', 'recipe_user_login');
+add_filter ('the_content' , 'output_notices', 20);
+add_action('wp_dashboard_setup', 'r_add_dashboard_widgets');
 
 
 // endregion

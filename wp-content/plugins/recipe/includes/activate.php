@@ -14,6 +14,9 @@ function r_activate_plugin(){
 		wp_die(__('You must update WordPress to use this plugin', 'recipe'));
 	}
 
+	recipe_init();
+	flush_rewrite_rules();
+
 	/***
 	 * Create a database for the plugin
 	 */
@@ -39,5 +42,12 @@ function r_activate_plugin(){
 	require_once (ABSPATH . '/wp-admin/includes/upgrade.php');
 	dbDelta($createSQL);
 
+	/***
+	 * Schedule a cron job to show recipe of the day on a daily basis
+	 *
+	 * @since 1.0.0
+	 * @see wp_schedule_event()
+	 * @link https://codex.wordpress.org/Transients_API
+	 */
 	wp_schedule_event(time(), 'daily', 'r_daily_recipe_hook');
 }

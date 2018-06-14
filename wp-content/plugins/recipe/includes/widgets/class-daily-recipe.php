@@ -1,5 +1,12 @@
 <?php
 
+/***
+ * Class R_Daily_Recipe_Widget loads on the sidebar to show the recipe of the day. Recipe of the day is randomly
+ * generated daily using Transient API
+ *
+ * @since 1.0.0
+ * @link https://codex.wordpress.org/Transients_API
+ */
 class R_Daily_Recipe_Widget extends WP_Widget{
 
 
