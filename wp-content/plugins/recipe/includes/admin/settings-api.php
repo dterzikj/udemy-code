@@ -1,8 +1,7 @@
 <?php
 
 function r_settings_api(){
-
-	register_setting('r_opts_groups', 'r_opts', array('sanitize_callback' => 'r_sanitize_input'));
+	register_setting( 'r_opts_groups', 'r_opts', 'r_opts_sanitize' );
 
 	add_settings_section(
 		'recipe_settings',
@@ -13,45 +12,47 @@ function r_settings_api(){
 
 	add_settings_field(
 		'rating_login_required',
-		__('User login required for rating recipes', 'recipe'),
+		'User login required for rating recipes',
 		'rating_login_required_input_cb',
 		'r_opts_sections',
 		'recipe_settings'
 	);
 
 	add_settings_field(
-		'submission_login_required',
-		__('User login required for submitting recipes', 'recipe'),
-		'submission_login_required_input_cb',
+		'recipe_submission_login_required',
+		'User login required for submitting recipes',
+		'recipe_submission_login_required_input_cb',
 		'r_opts_sections',
 		'recipe_settings'
 	);
 }
 
 function r_settings_section(){
-	?><p>You can change recipe settings here.</p><?php
-}
-
-function r_sanitize_input($input){
-	return $input;
+	echo '<p>You can change the recipe settings here.</p>';
 }
 
 function rating_login_required_input_cb(){
-	$recipe_opts = get_option('r_opts');
+	$recipe_opts                =   get_option( 'r_opts' );
 	?>
 	<select id="rating_login_required" name="r_opts[rating_login_required]">
 		<option value="1">No</option>
-		<option value="2" <?php echo $recipe_opts['rating_login_required'] == 2 ? 'selected' : '' ?>>Yes</option>
+		<option value="2" <?php echo $recipe_opts['rating_login_required'] == 2 ? 'SELECTED' : ''; ?>>Yes</option>
 	</select>
 	<?php
 }
 
-function submission_login_required_input_cb(){
-	$recipe_opts = get_option('r_opts');
+function recipe_submission_login_required_input_cb(){
+	$recipe_opts                    =   get_option( 'r_opts' );
 	?>
-	<select id="submission_login_required" name="r_opts[submission_login_required]">
+	<select id='recipe_submission_login_required' name='r_opts[recipe_submission_login_required]'>
 		<option value="1">No</option>
-		<option value="2" <?php echo $recipe_opts['submission_login_required'] == 2 ? 'selected' : '' ?>>Yes</option>
+		<option value="2" <?php echo $recipe_opts['recipe_submission_login_required'] == 2 ? 'SELECTED' : ''; ?>>Yes</option>
 	</select>
 	<?php
+}
+
+function r_opts_sanitize( $input ){
+	$input['rating_login_required']                 =   absint( $input['rating_login_required'] );
+	$input['recipe_submission_login_required']      =   absint( $input['recipe_submission_login_required'] );
+	return $input;
 }

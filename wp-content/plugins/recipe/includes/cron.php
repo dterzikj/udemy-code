@@ -1,15 +1,16 @@
 <?php
 
-function r_daily_recipe_cron(){
-
+function r_generate_daily_recipe(){
 	global $wpdb;
+	$recipe_id              =   $wpdb->get_var(
+		"SELECT `ID` FROM `" . $wpdb->posts . "`
+            WHERE post_status='publish' AND post_type='recipe'
+            ORDER BY rand() LIMIT 1"
+	);
 
-	$recipe_id              =   $wpdb->get_var($wpdb->prepare(
-		"SELECT `ID` FROM `" . $wpdb->posts. "`
-            WHERE post_status=%s AND post_type=%s
-            ORDER BY rand() LIMIT 1;",
-		'publish', 'recipe'
-	));
-
-	set_transient(DAILY_RECIPE_TRAINSIENT_KEY, $recipe_id, DAY_IN_SECONDS);
+	set_transient(
+		'r_daily_recipe',
+		$recipe_id,
+		DAY_IN_SECONDS
+	);
 }

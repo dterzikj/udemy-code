@@ -4,8 +4,8 @@ function r_admin_menus(){
 	add_menu_page(
 		'Recipe Options',
 		'Recipe Options',
-		RECIPE_OPTIONS_CAPABILITY,
-		RECIPE_OPTIONS_SLUG,
+		'edit_theme_options',
+		'r_plugin_opts',
 		'r_plugin_opts_page'
 	);
 }

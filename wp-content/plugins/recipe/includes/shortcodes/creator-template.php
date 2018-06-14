@@ -30,7 +30,7 @@
 		<input type="text" class="form-control" id="r_inputMealType">
 	</div>
     <div class="form-group">
-        <label>Featured Image <button type="button" class="btn btn-default" id="recipe-img-upload-btn">Upload</button></label>
+        <label>Featured Image <a href="#" id="recipe-img-upload-btn">Upload</a></label>
         <br>
         <img id="recipe-img-preview">
         <input type="hidden" id="r_inputImgID">

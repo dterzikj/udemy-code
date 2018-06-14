@@ -1,13 +1,9 @@
 <?php
 
-function r_save_origin($term_id){
-
-	if(!isset($_POST['r_more_info_url']) or empty($_POST['r_more_info_url'])){
-		return;
-	} else if(doing_action()){
+function r_save_origin_meta( $term_id ){
+	if( !isset($_POST['r_more_info_url']) ){
 		return;
 	}
 
-	// TODO: Fix updating meta to database problem
-	update_term_meta( $term_id, ORIGIN_META_KEY, esc_url_raw($_POST['r_more_info_url']));
+	update_term_meta( $term_id, 'more_info_url', esc_url_raw($_POST['r_more_info_url']) );
 }

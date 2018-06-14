@@ -1,17 +1,16 @@
 <?php
 
 function r_save_options(){
-
-	if(!current_user_can(RECIPE_OPTIONS_CAPABILITY)){
-		die(__('You are not allowed access to do this', 'recipe'));
+	if( !current_user_can( 'edit_theme_options' ) ){
+		wp_die( __( 'You are not allowed to access this page.', 'recipe' ) );
 	}
 
-	check_admin_referer('r_options_verify');
+	check_admin_referer( 'r_options_verify' );
 
-	$recipe_opts = get_option('r_opts');
-	$recipe_opts['rating_login_required'] = absint($_POST['r_rating_login_required']);
-	$recipe_opts['submission_login_required'] = absint($_POST['r_submission_login_required']);
+	$recipe_opts                                    =   get_option( 'r_opts' );
+	$recipe_opts['rating_login_required']           =   absint($_POST['r_rating_login_required']);
+	$recipe_opts['recipe_submission_login_required']=   absint($_POST['r_submission_login_required']);
 
-	update_option('r_opts', $recipe_opts);
-	wp_redirect(admin_url('admin.php?page=r_plugin_opts&status=1'));
+	update_option( 'r_opts', $recipe_opts );
+	wp_redirect( admin_url( 'admin.php?page=r_plugin_opts&status=1' ) );
 }
