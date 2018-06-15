@@ -61,7 +61,7 @@ get_header();
 								if(has_post_thumbnail()){
 								?>
 								<div class="entry-image clearfix">
-									<?php the_post_thumbnail('full'); ?>
+									<?php the_post_thumbnail('du-post-image'); ?>
 								</div>
 								<?php
 								}

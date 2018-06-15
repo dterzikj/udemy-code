@@ -54,7 +54,7 @@
     }else if(has_post_thumbnail()){
 		?>
 		<div class="entry-image clearfix">
-			<?php the_post_thumbnail('full', array('class' => 'image_fade')); ?>
+			<?php the_post_thumbnail('du-post-image', array('class' => 'image_fade')); ?>
 		</div>
 		<?php
 	}

@@ -19,6 +19,7 @@
 
 						$author_ID = get_the_author_meta('ID');
 						$author_url = get_author_posts_url($author_ID);
+						$twitter = get_the_author_meta('du_twitter', $author_ID);
 
 						?>
 
@@ -54,7 +55,7 @@
 									if(has_post_thumbnail()){
 									?>
 									<div class="entry-image clearfix">
-										<?php the_post_thumbnail('full'); ?>
+										<?php the_post_thumbnail('du-post-image'); ?>
 									</div>
 									<?php
 									}
@@ -105,9 +106,9 @@
 
 								<!-- Post Author Info
 								============================================= -->
-								<div class="panel panel-default">
+								<div class="panel panel-default" itemscope itemtype="https://schema.org/Person">
 									<div class="panel-heading">
-										<h3 class="panel-title">Posted by <span><a href="<?php echo $author_url; ?>">
+										<h3 class="panel-title">Posted by <span itemprop="name"><a href="<?php echo $author_url; ?>">
                                                     <?php the_author(); ?>
                                                 </a></span></h3>
 									</div>
@@ -116,6 +117,13 @@
 											<?php echo get_avatar($author_ID, 90, '', false, array('class' => 'img-circle')); ?>
 										</div>
                                         <?php echo nl2br(get_the_author_meta('description')); ?>
+                                        <?php
+
+                                        if($twitter){
+                                            echo '<p>Twitter: @<a href="https://twitter.com/'. $twitter .'">'. $twitter .'</a> </p>';
+                                        }
+
+                                        ?>
 									</div>
 								</div><!-- Post Single - Author End -->
 

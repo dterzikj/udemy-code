@@ -3,7 +3,6 @@
 <head>
 
     <meta charset="<?php bloginfo('charset'); ?>" >
-	<link rel="icon" type="image/png" href="images/favicon.png">
 	<!-- Stylesheets
 	============================================= -->
 	<?php wp_head(); ?>
@@ -11,7 +10,7 @@
 
 </head>
 
-<body <?php body_class('no-transition stretched') ?> >
+<body <?php body_class('no-transition stretched') ?> itemscope itemtype="https://schema.org/WebPage">
 
 <!-- Document Wrapper
 ============================================= -->
